@@ -1,0 +1,12 @@
+# Python kesh fayllari
+*.pyc
+__pycache__/
+
+# Muhit sozlamalari
+*.env
+
+# Ma'lumotlar bazasi fayli
+db.sqlite3
+
+# Statik fayllar
+/staticfiles/
