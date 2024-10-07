@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% for seller_detail in seller_details %}
+    <p>=======================================</p>
+	<p><b>rating: </b>{{ seller_detail.seller.rating}}</p>
+	<p><b>name: </b>{{ seller_detail.name }}</p>
+	<p><b>description: </b>{{ seller_detail.description }}</p>
+	<p><b>language: </b>{{ seller_detail.language }}</p>
+{% endfor %}
+
+</body>
+</html>
