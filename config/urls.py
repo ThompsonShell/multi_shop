@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.urls import path, include
 from apps.categories.views import category
 from django.conf.urls.static import static
-from apps.generals.views import set_language
+from apps.generals.views import set_language, search
 from django.conf.urls.i18n import i18n_patterns
 
 from config import settings
@@ -22,6 +22,7 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     path('', views.home, name='home-page'),
     path('admin/', admin.site.urls),
+    path('search/', search, name='search_text'),
     path('detail/', views.detail, name='detail-page'),
     path('contact/', views.contact, name='contact-page'),
     path('checkout/', views.checkout, name='checkout-page'),

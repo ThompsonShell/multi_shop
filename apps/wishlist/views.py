@@ -5,9 +5,9 @@ from django.shortcuts import render, redirect
 from apps.products.models import Product
 from apps.wishlist.models import Wishlist
 
-
+@login_required
 def wishlist(request: WSGIRequest):
-    context = {"wishlists": Wishlist.objects.select_related('user', 'product')}
+    context = {"wishlists": Wishlist.objects.filter(user=request.user).select_related('user', 'product')}
     return render(request=request, template_name='wishlist.html', context=context)
 
 

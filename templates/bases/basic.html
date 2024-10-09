@@ -112,13 +112,13 @@
             </a>
         </div>
         <div class="col-lg-4 col-6 text-left">
-            <form action="">
+            <form action="{% url 'search_text' %}" method="get">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="{% translate 'Search for products' %}">
+                    <input type="text" class="form-control" placeholder="{% translate 'Search for products' %}" value="{{ search_text }}">
                     <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
+                            <button type="submit" class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
-                            </span>
+                            </button>
                     </div>
                 </div>
             </form>
@@ -182,18 +182,18 @@
                         <a href="{% url 'products:product_list' %}"
                            class="nav-item nav-link {% if page == 'shop' %} active {% endif %}">{% translate 'Shop' %}</a>
 
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle {% if page == 'pages' %} active {% endif %}"
-                               data-toggle="dropdown">{% translate 'Pages' %} <i class="fa fa-angle-down mt-1"></i></a>
-                            <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                <a href="{% url 'cart-page' %}"
-                                   class="dropdown-item {% if page == 'shopping_card' %} active {% endif %}">Shopping
-                                    Cart</a>
-                                <a href="{% url 'checkout-page' %}"
-                                   class="dropdown-item {% if page == 'checkout' %} active {% endif %}">{% translate 'Checkout' %}</a>
+<!--                        <div class="nav-item dropdown">-->
+<!--                            <a href="#" class="nav-link dropdown-toggle {% if page == 'pages' %} active {% endif %}"-->
+<!--                               data-toggle="dropdown">{% translate 'Pages' %} <i class="fa fa-angle-down mt-1"></i></a>-->
+<!--                            <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">-->
+<!--                                <a href="{% url 'cart-page' %}"-->
+<!--                                   class="dropdown-item {% if page == 'shopping_card' %} active {% endif %}">Shopping-->
+<!--                                    Cart</a>-->
+<!--                                <a href="{% url 'checkout-page' %}"-->
+<!--                                   class="dropdown-item {% if page == 'checkout' %} active {% endif %}">{% translate 'Checkout' %}</a>-->
 
-                            </div>
-                        </div>
+<!--                            </div>-->
+<!--                        </div>-->
                         <a href="{% url 'contact-page' %}"
                            class="nav-item nav-link {% if page == 'contact' %} active {% endif %}">{% translate 'Contact' %}</a>
                         <a href="{% url 'about:about-page' %}"
@@ -202,9 +202,9 @@
                     <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                         <a class="btn px-0" href="{% url 'wishlist' %}">
                             <span class="badge text-secondary border border-secondary rounded-circle"
-                                  style="padding-bottom: 2px;">0</span>
+                                  style="padding-bottom: 2px;">{{wishlist_count}}</span>
                         </a>
-                        <a href="{% url 'detail-page' %}" class="btn px-0 ml-3">
+                        <a href="{% url 'cart-page' %}" class="btn px-0 ml-3">
                             <i class="fas fa-shopping-cart text-primary"></i>
                             <span class="badge text-secondary border border-secondary rounded-circle"
                                   style="padding-bottom: 2px;">0</span>
