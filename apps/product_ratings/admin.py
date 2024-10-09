@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.ratings.models import ProductRating
+from apps.product_ratings.models import ProductRating
 
 
 @admin.register(ProductRating)
