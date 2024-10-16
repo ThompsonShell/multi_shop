@@ -1,213 +1,224 @@
 {% extends 'bases/basic.html' %}
+{% load product_tags %}
+{% load static %}
+
+
 {% block content %}
-    {% load product_tags %}
-    {% load static %}
+
+<!-- Breadcrumb Start -->
+{% include 'includes/breadcrumb.html' with page='Shop' %}
+<!-- Breadcrumb End -->
 
 
-
-    <!-- Breadcrumb Start -->
-    {% include 'includes/breadcrumb.html' with page='Shop' %}
-    <!-- Breadcrumb End -->
-
-
-    <!-- Shop Start -->
-    <div class="container-fluid">
-        <div class="row px-xl-5">
-            <!-- Shop Sidebar Start -->
-            <div class="col-lg-3 col-md-4">
-                <!-- Price Start -->
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by price</span>
-                </h5>
-                <div class="bg-light p-4 mb-30">
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="price-all">
-                            <label class="custom-control-label" for="price-all">All Price</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-1">
-                            <label class="custom-control-label" for="price-1">$0 - $100</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-2">
-                            <label class="custom-control-label" for="price-2">$100 - $200</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-3">
-                            <label class="custom-control-label" for="price-3">$200 - $300</label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-4">
-                            <label class="custom-control-label" for="price-4">$300 - $400</label>
-                            <span class="badge border font-weight-normal">145</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                            <input type="checkbox" class="custom-control-input" id="price-5">
-                            <label class="custom-control-label" for="price-5">$400 - $500</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                    </form>
-                </div>
-                <!-- Price End -->
-
-                <!-- Color Start -->
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by color</span>
-                </h5>
-                <div class="bg-light p-4 mb-30">
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="color-all">
-                            <label class="custom-control-label" for="price-all">All Color</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-1">
-                            <label class="custom-control-label" for="color-1">Black</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-2">
-                            <label class="custom-control-label" for="color-2">White</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-3">
-                            <label class="custom-control-label" for="color-3">Red</label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-4">
-                            <label class="custom-control-label" for="color-4">Blue</label>
-                            <span class="badge border font-weight-normal">145</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                            <input type="checkbox" class="custom-control-input" id="color-5">
-                            <label class="custom-control-label" for="color-5">Green</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                    </form>
-                </div>
-                <!-- Color End -->
-
-                <!-- Size Start -->
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by size</span>
-                </h5>
-                <div class="bg-light p-4 mb-30">
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="size-all">
-                            <label class="custom-control-label" for="size-all">All Size</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="size-1">
-                            <label class="custom-control-label" for="size-1">XS</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="size-2">
-                            <label class="custom-control-label" for="size-2">S</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="size-3">
-                            <label class="custom-control-label" for="size-3">M</label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="size-4">
-                            <label class="custom-control-label" for="size-4">L</label>
-                            <span class="badge border font-weight-normal">145</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                            <input type="checkbox" class="custom-control-input" id="size-5">
-                            <label class="custom-control-label" for="size-5">XL</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                    </form>
-                </div>
-                <!-- Size End -->
+<!-- Shop Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <!-- Shop Sidebar Start -->
+        <div class="col-lg-3 col-md-4">
+            <!-- Price Start -->
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by price</span>
+            </h5>
+            <div class="bg-light p-4 mb-30">
+                <form>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" checked id="price-all">
+                        <label class="custom-control-label" for="price-all">All Price</label>
+                        <span class="badge border font-weight-normal">1000</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="price-1">
+                        <label class="custom-control-label" for="price-1">$0 - $100</label>
+                        <span class="badge border font-weight-normal">150</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="price-2">
+                        <label class="custom-control-label" for="price-2">$100 - $200</label>
+                        <span class="badge border font-weight-normal">295</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="price-3">
+                        <label class="custom-control-label" for="price-3">$200 - $300</label>
+                        <span class="badge border font-weight-normal">246</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="price-4">
+                        <label class="custom-control-label" for="price-4">$300 - $400</label>
+                        <span class="badge border font-weight-normal">145</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                        <input type="checkbox" class="custom-control-input" id="price-5">
+                        <label class="custom-control-label" for="price-5">$400 - $500</label>
+                        <span class="badge border font-weight-normal">168</span>
+                    </div>
+                </form>
             </div>
-            <!-- Shop Sidebar End -->
+            <!-- Price End -->
+
+            <!-- Color Start -->
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by color</span>
+            </h5>
+            <div class="bg-light p-4 mb-30">
+                <form>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" checked id="color-all">
+                        <label class="custom-control-label" for="price-all">All Color</label>
+                        <span class="badge border font-weight-normal">1000</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="color-1">
+                        <label class="custom-control-label" for="color-1">Black</label>
+                        <span class="badge border font-weight-normal">150</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="color-2">
+                        <label class="custom-control-label" for="color-2">White</label>
+                        <span class="badge border font-weight-normal">295</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="color-3">
+                        <label class="custom-control-label" for="color-3">Red</label>
+                        <span class="badge border font-weight-normal">246</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="color-4">
+                        <label class="custom-control-label" for="color-4">Blue</label>
+                        <span class="badge border font-weight-normal">145</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                        <input type="checkbox" class="custom-control-input" id="color-5">
+                        <label class="custom-control-label" for="color-5">Green</label>
+                        <span class="badge border font-weight-normal">168</span>
+                    </div>
+                </form>
+            </div>
+            <!-- Color End -->
+
+            <!-- Size Start -->
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by size</span>
+            </h5>
+            <div class="bg-light p-4 mb-30">
+                <form>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" checked id="size-all">
+                        <label class="custom-control-label" for="size-all">All Size</label>
+                        <span class="badge border font-weight-normal">1000</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="size-1">
+                        <label class="custom-control-label" for="size-1">XS</label>
+                        <span class="badge border font-weight-normal">150</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="size-2">
+                        <label class="custom-control-label" for="size-2">S</label>
+                        <span class="badge border font-weight-normal">295</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="size-3">
+                        <label class="custom-control-label" for="size-3">M</label>
+                        <span class="badge border font-weight-normal">246</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" id="size-4">
+                        <label class="custom-control-label" for="size-4">L</label>
+                        <span class="badge border font-weight-normal">145</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                        <input type="checkbox" class="custom-control-input" id="size-5">
+                        <label class="custom-control-label" for="size-5">XL</label>
+                        <span class="badge border font-weight-normal">168</span>
+                    </div>
+                </form>
+            </div>
+            <!-- Size End -->
+        </div>
+        <!-- Shop Sidebar End -->
 
 
-            <!-- Shop Product Start -->
-            <div class="col-lg-9 col-md-8">
-                <div class="row pb-3">
-                    <div class="col-12 pb-1">
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <div>
-                                <button class="btn btn-sm btn-light"><i class="fa fa-th-large"></i></button>
-                                <button class="btn btn-sm btn-light ml-2"><i class="fa fa-bars"></i></button>
-                            </div>
-                            <div class="ml-2">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-light dropdown-toggle"
-                                            data-toggle="dropdown">Sorting
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#">Latest</a>
-                                        <a class="dropdown-item" href="#">Popularity</a>
-                                        <a class="dropdown-item" href="#">Best Rating</a>
-                                    </div>
+        <!-- Shop Product Start -->
+        <div class="col-lg-9 col-md-8">
+            <div class="row pb-3">
+                <div class="col-12 pb-1">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <div>
+                            <button class="btn btn-sm btn-light"><i class="fa fa-th-large"></i></button>
+                            <button class="btn btn-sm btn-light ml-2"><i class="fa fa-bars"></i></button>
+                        </div>
+                        <div class="ml-2">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-light dropdown-toggle"
+                                        data-toggle="dropdown">Sorting
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">Latest</a>
+                                    <a class="dropdown-item" href="#">Popularity</a>
+                                    <a class="dropdown-item" href="#">Best Rating</a>
                                 </div>
-                                <div class="btn-group ml-2">
-                                    <button type="button" class="btn btn-sm btn-light dropdown-toggle"
-                                            data-toggle="dropdown">Showing
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#">10</a>
-                                        <a class="dropdown-item" href="#">20</a>
-                                        <a class="dropdown-item" href="#">30</a>
-                                    </div>
+                            </div>
+                            <div class="btn-group ml-2">
+                                <button type="button" class="btn btn-sm btn-light dropdown-toggle"
+                                        data-toggle="dropdown">Showing
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">10</a>
+                                    <a class="dropdown-item" href="#">20</a>
+                                    <a class="dropdown-item" href="#">30</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {% for product in page_obj %}
-                        <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                            <div class="product-item bg-light mb-4">
-                                <div class="product-img position-relative overflow-hidden">
-                                    {% if product.main_image %}
-                                        <img class="img-fluid w-100" src="{{ product.main_image.url }}" alt="">
+                </div>
+                {% for product in page_obj %}
+                <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                    <div class="product-item bg-light mb-4">
+                        <div class="product-img position-relative overflow-hidden">
+                            {% if product.main_image %}
+                            <img class="img-fluid w-100" src="{{ product.main_image.url }}" alt="">
+                            {% else %}
+                            <img class="img-fluid w-100"
+                                 src="data:image/jpeg;base64,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"
+                                 alt="">
+                            {% endif %}
+                            <div class="product-action">
+                                <a class="btn btn-outline-dark btn-square" href=""><i
+                                        class="fa fa-shopping-cart"></i></a>
+                                <a class="btn btn-outline-dark btn-square"
+                                   href="{% url 'wishlists:create_wishlist' product_id=product.id %}">
+<!--                                    {% product_in_wishlist request.user.id product.id as exists %}-->
+                                        {% if product in user_wishlist %}
+                                    <i class="far fa-heart" aria-hidden="true"></i>
                                     {% else %}
-                                        <img class="img-fluid w-100" src="data:image/jpeg;base64,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" alt="">
+                                    <i class="far fa-heart"></i>
                                     {% endif %}
-                                    <div class="product-action">
-                                        <a class="btn btn-outline-dark btn-square" href=""><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                        <a class="btn btn-outline-dark btn-square" href="{% url 'create_wishlist' product_id=product.id %}"><i class="far fa-heart"></i></a>
-                                        <a class="btn btn-outline-dark btn-square" href=""><i
-                                                class="fa fa-sync-alt"></i></a>
-                                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                                    </div>
-                                </div>
-                                <div class="text-center py-4">
-                                    <a class="h6 text-decoration-none text-truncate" href="">{{ product.title }}</a>
-                                    <div class="d-flex align-items-center justify-content-center mt-2">
-                                        <h5>{{ product.price }}</h5>
-                                        <h6 class="text-muted ml-2">
-                                            <del>{{ product.old_price }}</del>
-                                        </h6>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-center mb-1">
-                                        {% decimal_to_range product.avg_rating as SS %}
-                                        {% for rating in SS %}
-                                            <small class="fa fa-star text-primary mr-1"></small>
-                                        {% endfor %}
-                                        <small>({{ product.ratings.count }})</small>
-                                    </div>
-                                </div>
+                                </a>
+
+                                <a class="btn btn-outline-dark btn-square" href=""><i
+                                        class="fa fa-sync-alt"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                             </div>
                         </div>
-                    {% endfor %}
+                        <div class="text-center py-4">
+                            <a class="h6 text-decoration-none text-truncate" href="">{{ product.title }}</a>
+                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                <h5>{{ product.price }}</h5>
+                                <h6 class="text-muted ml-2">
+                                    <del>{{ product.old_price }}</del>
+                                </h6>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center mb-1">
+                                {% decimal_to_range product.avg_rating as SS %}
+                                {% for rating in SS %}
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                {% endfor %}
+                                <small>({{ product.avg_rating|floatformat:"0"}})</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
 
-                    <div class="col-12">
-                      <div class="pagination">
+                <div class="col-12">
+                    <div class="pagination">
                             <span class="step-links">
                                 {% if page_obj.has_previous %}
                                     <a href="?page=1">&laquo; first</a>
@@ -223,13 +234,13 @@
                                     <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
                                 {% endif %}
                             </span>
-                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Shop Product End -->
         </div>
+        <!-- Shop Product End -->
     </div>
-    <!-- Shop End -->
+</div>
+<!-- Shop End -->
 
 {% endblock content %}

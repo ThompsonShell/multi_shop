@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.utils.translation import activate, get_language
 
+from apps.products.models import Product
 from config import settings
 
 
@@ -18,6 +19,16 @@ def set_language(request, lang):
 
 
 def search(request: WSGIRequest)-> HttpResponse:
-    search_text = request.GET.get('search')
-    
+    print("<<<<<<<")
+    search_text = request.GET.get('search_text', ' ')
+    print(">>>>>>>>")
+    request.session['search_text'] = search_text
     return redirect('products:product_list')
+
+
+
+def set_currency(request, currency: str):
+    currencies = Product.Currency.values
+    if currency in currencies:
+        request.session['currency'] = currency
+    return redirect(request.META['HTTP_REFERER'])

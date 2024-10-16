@@ -45,8 +45,12 @@ INSTALLED_APPS = [
     'apps.authentication',
     'apps.products',
     'apps.wishlist',
-    'apps.product_comments',
-    'apps.product_ratings',
+    'apps.comments',
+    'apps.ratings',
+    'apps.orders',
+    'apps.coupons',
+    'apps.features',
+    'apps.contacts',
 
 
     # This place for debug-toolbar

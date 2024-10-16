@@ -22,7 +22,7 @@
                     <tbody class="align-middle">
                     {% for i in wishlists %}
                         <tr>
-                            <td class="align-middle"><img src="{{ i.product.main_image.url }}" alt="" style="width: 50px;"> {{ i.product.name }}</td>
+                            <td class="align-middle" width="100px"><img src="{{ i.product.main_image.url }}" alt="" style="width: 50px;"> {{ i.product.name }}</td>
                             <td class="align-middle">{{ i.product.price }}</td>
                             <td class="align-middle"><a href="{% url 'delete_wishlist' _id=i.id %}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a></td>
                         </tr>

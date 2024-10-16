@@ -3,10 +3,14 @@ from django.contrib import admin
 from django.urls import path, include
 from apps.categories.views import category
 from django.conf.urls.static import static
-from apps.generals.views import set_language, search
+from apps.generals.views import set_language, search, set_currency
 from django.conf.urls.i18n import i18n_patterns
 
-from config import settings
+from apps.main.views import checkout, home
+from apps.products.views import product_list, detail
+from apps.contacts.views import contact
+
+from django.conf import settings
 
 urlpatterns = [
     # =========== CKEDITOR URLS  ============
@@ -18,14 +22,18 @@ urlpatterns = [
     # =======SET LANGUAGE URLS =======
     path('set-language/<str:lang>/', set_language, name='set-lang'),
 
+    # =======SET CURRENCY URLS =======
+    path('set-currency/<str:currency>/', set_currency, name='set-curr')
+
 ]
 urlpatterns += i18n_patterns(
-    path('', views.home, name='home-page'),
+    path('', home, name='home-page'),
+    path('search_product/', product_list, name='search_product'),
     path('admin/', admin.site.urls),
     path('search/', search, name='search_text'),
-    path('detail/', views.detail, name='detail-page'),
-    path('contact/', views.contact, name='contact-page'),
-    path('checkout/', views.checkout, name='checkout-page'),
+    path('detail/', detail, name='detail-page'),
+    path('contact/', contact, name='contact-page'),
+    path('checkout/', checkout, name='checkout-page'),
     path('cart/', views.cart, name='cart-page'),
     path('products/', include('apps.products.urls', namespace='products')),
     path('category/', category, name='category-page'),

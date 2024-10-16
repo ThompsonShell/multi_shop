@@ -8632,7 +8632,7 @@ div:not(.nav-align-left):not(.nav-align-right) > .nav-tabs {
   overflow-x: auto;
 }
 .nav-tabs.nav-tabs-widget .nav-link {
-  border: 2px dashed #e6e5e8;
+  border: 2px solid #e6e5e8;
 }
 @media (min-width: 768px) {
   .nav-tabs.nav-tabs-widget .nav-link {

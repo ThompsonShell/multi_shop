@@ -1,10 +1,9 @@
 from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
 
 
 def validate_phone(phone_number: str):
-    if not (len(phone_number) == 13
-            and
-            phone_number[1:].isdigit()
-            and
-            phone_number.startswith('+998')):
-        raise ValidationError('your phone number is invalid')
+    RegexValidator(
+        regex=r'^\+998\d{9}$',
+        message='invalid phone number'
+    )

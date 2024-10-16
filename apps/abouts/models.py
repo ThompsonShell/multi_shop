@@ -1,3 +1,5 @@
+from os.path import split
+
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import get_language
@@ -15,3 +17,9 @@ class About(models.Model):
     def clean(self):
         if not self.pk and About.objects.exists():
             raise ValidationError("About object is already created !")
+
+
+    # def save(self, *args, **kwargs):
+    #     self.title = ' '.join()
+    #     self.description = ' '.join(self.description.split())
+    #     super().save(*args, **kwargs)

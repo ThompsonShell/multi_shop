@@ -36,7 +36,7 @@ class SellerDetail(models.Model):
 
 
 class SellerSocialLink(models.Model):
-    social = models.PositiveSmallIntegerField(choices=SocialLinkType.choices)
+    social = models.PositiveSmallIntegerField(choices= SocialLinkType.choices)
     social_media = models.URLField(max_length=255, unique=True)
 
     def __str__(self):
