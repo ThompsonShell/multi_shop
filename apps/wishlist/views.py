@@ -21,6 +21,6 @@ def create_wishlist(request: WSGIRequest, product_id: int):
 
 
 @login_required
-def delete_wishlist(request: WSGIRequest, product_id: int) -> None:
+def delete_wishlist(request, product_id: int) -> None:
     Wishlist.objects.filter(id=product_id).delete()
     return redirect('wishlist')

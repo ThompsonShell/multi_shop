@@ -35,11 +35,11 @@
 <div class="container-fluid">
     <div class="row bg-secondary py-1 px-xl-5">
         <div class="col-lg-6 d-none d-lg-block">
-                <div class="d-inline-flex align-items-center h-100">
-                    <a class="text-body mr-3" href="{% url 'about:about-page' %}">{% translate 'About' %}</a>
-                    <a class="text-body mr-3" href="">{% translate 'Contact' %}</a>
-                    <a class="text-body mr-3" href="">{% translate 'Help' %}</a>
-                </div>
+            <div class="d-inline-flex align-items-center h-100">
+                <a class="text-body mr-3" href="{% url 'about:about-page' %}">{% translate 'About' %}</a>
+                <a class="text-body mr-3" href="">{% translate 'Contact' %}</a>
+                <a class="text-body mr-3" href="">{% translate 'Help' %}</a>
+            </div>
         </div>
         <div class="col-lg-6 text-center text-lg-right">
             <div class="d-inline-flex align-items-center">
@@ -75,16 +75,16 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
                         {% for curr in currency_list %}
-                            {% if curr != currency %}
+                        {% if curr != currency %}
 
-                            <a href="{% url 'set-curr' curr %}">
-                                <button class="dropdown-item" type="button">{{ curr }}</button>
-                            </a>
-                            {% endif %}
+                        <a href="{% url 'set-curr' curr %}">
+                            <button class="dropdown-item" type="button">{{ curr }}</button>
+                        </a>
+                        {% endif %}
                         {% endfor %}
                     </div>
                 </div>
-                <div class="btn-group">
+
                     <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">
                         {{ current_language.upper }}
                     </button>
@@ -187,11 +187,9 @@
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
                         <a href="{% url 'home-page' %}"
-                           class="nav-item nav-link {% if page == 'home' %} active {% endif %} ">{% translate 'Home'
-                            %}</a>
+                           class="nav-item nav-link {% if page == 'home' %} active {% endif %} ">{% translate 'Home' %}</a>
                         <a href="{% url 'products:product_list' %}"
-                           class="nav-item nav-link {% if page == 'shop' %} active {% endif %}">{% translate 'Shop'
-                            %}</a>
+                           class="nav-item nav-link {% if page == 'shop' %} active {% endif %}">{% translate 'Shop' %}</a>
 
                         <!--                        <div class="nav-item dropdown">-->
                         <!--                            <a href="#" class="nav-link dropdown-toggle {% if page == 'pages' %} active {% endif %}"-->
@@ -206,17 +204,16 @@
                         <!--                            </div>-->
                         <!--                        </div>-->
                         <a href="{% url 'contact-page' %}"
-                           class="nav-item nav-link {% if page == 'contact' %} active {% endif %}">{% translate
-                            'Contact' %}</a>
+                           class="nav-item nav-link {% if page == 'contact' %} active {% endif %}">{% translate 'Contact' %}</a>
                         <a href="{% url 'about:about-page' %}"
-                           class="nav-item nav-link {% if page == 'about' %} active {% endif %} ">{% translate 'About
-                            Us' %}</a>
+                           class="nav-item nav-link {% if page == 'about' %} active {% endif %} ">{% translate 'About Us' %}</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                        <a class="btn px-0" href="{% url 'wishlist' %}">
-                            <span class="badge text-secondary border border-secondary rounded-circle"
-                                  style="padding-bottom: 2px;">{{wishlist_count}}</span>
-                        </a>
+                        <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
+                            <a href="" class="btn px-0">
+                                <i class="fas fa-heart text-primary"></i>
+                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">{{wishlist_count}}</span>
+                            </a>
                         <a href="{% url 'cart-page' %}" class="btn px-0 ml-3">
                             <i class="fas fa-shopping-cart text-primary"></i>
                             <span class="badge text-secondary border border-secondary rounded-circle"

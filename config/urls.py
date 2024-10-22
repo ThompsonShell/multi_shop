@@ -1,16 +1,18 @@
-from apps.main import views
+from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
-from apps.categories.views import category
 from django.conf.urls.static import static
-from apps.generals.views import set_language, search, set_currency
 from django.conf.urls.i18n import i18n_patterns
 
+
+
+from apps.main import views
+from apps.categories.views import category
+from apps.general.views import set_language, search, set_currency
 from apps.main.views import checkout, home
 from apps.products.views import product_list, detail
 from apps.contacts.views import contact
 
-from django.conf import settings
 
 urlpatterns = [
     # =========== CKEDITOR URLS  ============
@@ -28,22 +30,36 @@ urlpatterns = [
 ]
 urlpatterns += i18n_patterns(
     path('', home, name='home-page'),
-    path('search_product/', product_list, name='search_product'),
+
+    # ======= ADMIN URLS =======
     path('admin/', admin.site.urls),
-    path('search/', search, name='search_text'),
-    path('detail/', detail, name='detail-page'),
-    path('contact/', contact, name='contact-page'),
+
+    # ======= GENERAL URLS =======
+    path('search/', include('apps.general.urls')),
+
+    # ======= CONTACT URLS =======
+    path('contacts/', include('apps.contacts.urls')),
+
+
     path('checkout/', checkout, name='checkout-page'),
     path('cart/', views.cart, name='cart-page'),
-    path('products/', include('apps.products.urls', namespace='products')),
-    path('category/', category, name='category-page'),
 
+
+    # ======= PRODUCT URLS =======
+    path('detail/', detail, name='detail-page'),
+
+    path('search_product/', product_list, name='search_product'),
+
+    path('products/', include('apps.products.urls', namespace='products')),
+
+    # ======= CATEGORY URLS =======
+    path('categories/', include('apps.categories.urls')),
 
     # ======= ABOUT URLS =======
     path('about/', include('apps.abouts.urls', namespace='about')),
 
     # ======= WISHLIST URLS =======
-    path('wishlist/', include('apps.wishlist.urls')),
+    path('wishlist/', include('apps.wishlist.urls', namespace="wishlists")),
 
     # =========== AUTH URLS  ============
     path('auth/', include('apps.authentication.urls')),

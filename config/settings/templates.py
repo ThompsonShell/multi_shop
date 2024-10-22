@@ -12,7 +12,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 # This is my general context
-                'apps.generals.context_processors.general_context',
+                'apps.general.context_processors.general_context',
 
             ],
         },

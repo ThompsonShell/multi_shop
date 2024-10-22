@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django_ckeditor_5',
 
     # This place for My apps start
-    'apps.generals',
+    'apps.general',
     'apps.categories',
     'apps.main',
     'apps.sellers',

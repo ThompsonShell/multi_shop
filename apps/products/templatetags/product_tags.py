@@ -7,7 +7,8 @@ register = template.Library()
 
 @register.simple_tag
 def decimal_to_range(decimal_number):
-    return range(int(decimal_number))
+    if isinstance(decimal_number, int):
+        return range(decimal_number)
 
 
 @register.simple_tag

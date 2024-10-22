@@ -4,9 +4,14 @@ __pycache__/
 
 # Muhit sozlamalari
 *.env
+.env.example
 
 # Ma'lumotlar bazasi fayli
 db.sqlite3
 
 # Statik fayllar
 /staticfiles/
+
+#Migratsiya fayllar uchun
+**/migrations/*
+!**/migrations/*__init__.py

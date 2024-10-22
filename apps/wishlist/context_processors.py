@@ -1,4 +1,4 @@
-from apps.generals.models import General, GeneralSocialMedia
+from apps.general.models import General, GeneralSocialMedia
 from apps.wishlist.models import Wishlist
 
 

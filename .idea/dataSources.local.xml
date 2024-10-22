@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="DB-242.21829.162">
+    <data-source name="Aurora MySQL (MariaDB driver)" uuid="8846e0f9-a10a-41cf-b039-a3a35e2fb598">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL_AURORA" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>thompson</user-name>
+      <schema-mapping />
+    </data-source>
+  </component>
+</project>
