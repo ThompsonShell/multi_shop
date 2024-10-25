@@ -7,5 +7,5 @@ app_name = "wishlists"
 urlpatterns = [
     path('', wishlist, name='wishlist'),
     path('create/<int:product_id>/', create_wishlist, name='create_wishlist'),
-    path('delete/<int:_id>/', delete_wishlist, name='delete_wishlist'),
+    path('delete/<int:product_id>/', delete_wishlist, name='delete_wishlist'),
 ]

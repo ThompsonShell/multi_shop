@@ -1,6 +1,6 @@
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.utils.translation import activate, get_language
 
 from apps.products.models import Product
@@ -28,7 +28,19 @@ def search(request: WSGIRequest)-> HttpResponse:
 
 
 def set_currency(request, currency: str):
+
+
     currencies = Product.Currency.values
     if currency in currencies:
         request.session['currency'] = currency
     return redirect(request.META['HTTP_REFERER'])
+
+
+def cart(request):
+    return render(request=request, template_name='cart.html',context={'page':'pages'})
+
+
+def checkout(request):
+    return render(request=request, template_name='checkout.html',context={'page':'pages'})
+
+

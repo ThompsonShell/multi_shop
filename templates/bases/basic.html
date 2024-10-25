@@ -2,9 +2,9 @@
 {% load i18n %}
 {% get_current_language as current_language %}
 {% get_available_languages as available_languages %}
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <title>MultiShop - Online Shop Website Template</title>
@@ -29,7 +29,6 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 </head>
-
 <body>
 <!-- Topbar Start -->
 <div class="container-fluid">
@@ -141,6 +140,7 @@
     </div>
 </div>
 <!-- Topbar End -->
+
 <!-- Navbar Start -->
 <div class="container-fluid bg-dark mb-30">
     <div class="row px-xl-5">
@@ -210,9 +210,9 @@
                     </div>
                     <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                            <a href="" class="btn px-0">
+                            <a href="{% url 'wishlists:wishlist' %}" class="btn px-0">
                                 <i class="fas fa-heart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">{{wishlist_count}}</span>
+                                <span class="badge text-secondary border bor der-secondary rounded-circle" style="padding-bottom: 2px;">{{wishlist_count}}</span>
                             </a>
                         <a href="{% url 'cart-page' %}" class="btn px-0 ml-3">
                             <i class="fas fa-shopping-cart text-primary"></i>

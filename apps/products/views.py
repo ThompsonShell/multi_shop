@@ -39,3 +39,4 @@ def product_list(request: WSGIRequest) -> HttpResponse:
 
 def detail(request):
     return render(request=request, template_name='detail.html', context={'page': 'detail'})
+    

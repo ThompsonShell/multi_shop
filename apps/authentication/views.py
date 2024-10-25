@@ -22,7 +22,7 @@ def user_login(request):
 
 def logout_page(request):
     logout(request)
-    return redirect('login-page')
+    return redirect(request.META['HTTP_REFERER'])
 
 
 def register_page(request):

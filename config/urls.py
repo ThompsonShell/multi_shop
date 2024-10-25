@@ -6,10 +6,9 @@ from django.conf.urls.i18n import i18n_patterns
 
 
 
-from apps.main import views
 from apps.categories.views import category
-from apps.general.views import set_language, search, set_currency
-from apps.main.views import checkout, home
+from apps.general.views import set_language, search, set_currency, cart, checkout
+from apps.main.views import home
 from apps.products.views import product_list, detail
 from apps.contacts.views import contact
 
@@ -35,21 +34,16 @@ urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
 
     # ======= GENERAL URLS =======
+    path('cart/', cart, name='cart-page'),
     path('search/', include('apps.general.urls')),
+    path('checkout/', checkout, name='checkout-page'),
 
     # ======= CONTACT URLS =======
     path('contacts/', include('apps.contacts.urls')),
 
-
-    path('checkout/', checkout, name='checkout-page'),
-    path('cart/', views.cart, name='cart-page'),
-
-
     # ======= PRODUCT URLS =======
     path('detail/', detail, name='detail-page'),
-
     path('search_product/', product_list, name='search_product'),
-
     path('products/', include('apps.products.urls', namespace='products')),
 
     # ======= CATEGORY URLS =======
@@ -59,10 +53,13 @@ urlpatterns += i18n_patterns(
     path('about/', include('apps.abouts.urls', namespace='about')),
 
     # ======= WISHLIST URLS =======
-    path('wishlist/', include('apps.wishlist.urls', namespace="wishlists")),
+        path('wishlist/', include('apps.wishlist.urls', namespace="wishlists")),
 
     # =========== AUTH URLS  ============
     path('auth/', include('apps.authentication.urls')),
+
+    # ======= COMMENT URLS =======
+    path('comments/', include('apps.comments.urls', namespace="comments")),
 
     # ============= DEBUG_TOOLBAR URLs =======
     path('__debug__/', include('debug_toolbar.urls')),

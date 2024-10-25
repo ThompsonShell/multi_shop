@@ -1,4 +1,5 @@
 import os
+from fileinput import filename
 from random import random, randint, choice
 from tkinter import image_names
 
@@ -18,7 +19,7 @@ from faker import Faker
 
 from apps.categories.models import Category
 from apps.categories.views import category
-from apps.general.services import random_image_download
+from apps.general.services import random_image_download, random_image_url
 from apps.products.models import Product
 
 fake = Faker()
@@ -32,15 +33,27 @@ class Command(BaseCommand):
         django_filename = f'abouts/images/{today.year}/{today.month}/{today.day}/'
         # ===== check image ir for existing =====
         image_dir = os.path.join(settings.MEDIA_ROOT, django_filename)
+        image_name = random_image_download(image_dir)
+
+        if not os.path.exists(image_dir):
+            os.makedirs(image_dir)
+
+            filename = os.path.join(image_dir, image_name)
+
+            with open(filename, 'wb') as image:
+                image.write(requests.get(random_image_url()).content)
 
         if not About.objects.exists():
-            image_name = random_image_download(image_dir)
-
             About.objects.create(
                 title=fake.text(255),
                 description=fake.text(250),
                 image=os.path.join(django_filename, image_name)
             )
+
+        # obj = About.objects.last()
+        # # obj.image.name = filename
+        # obj.save()
+        # print("---------")s
 
     @staticmethod
     def generate_product():
@@ -48,7 +61,7 @@ class Command(BaseCommand):
         django_filename = f'products/images/{today.year}/{today.month}/{today.day}/'
         image_dir = os.path.join(settings.MEDIA_ROOT, django_filename)
 
-        for cat_id in range(90):
+        for cat_id in range(9):
             category = Category.objects.create(
                 name=fake.text(250)
             )
@@ -81,7 +94,7 @@ class Command(BaseCommand):
         # ===== generate about model =====
         print(self.stdout.write(self.style.SUCCESS('Generating about data !')))
         self.generate_about()
-
+        #
         # ===== generate product model =====
         print(self.stdout.write(self.style.SUCCESS('Generating products data !')))
         self.generate_product()

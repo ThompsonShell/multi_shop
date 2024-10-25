@@ -8,7 +8,7 @@ from apps.wishlist.models import Wishlist
 
 @login_required
 def wishlist(request: WSGIRequest):
-    context = {"wishlists": Wishlist.objects.filter(user=request.user).select_related('product')}
+    context = {"wishlist": Wishlist.objects.filter(user=request.user).select_related('product')}
     return render(request=request, template_name='wishlist.html', context=context)
 
 
@@ -23,4 +23,4 @@ def create_wishlist(request: WSGIRequest, product_id: int):
 @login_required
 def delete_wishlist(request, product_id: int) -> None:
     Wishlist.objects.filter(id=product_id).delete()
-    return redirect('wishlist')
+    return redirect('wishlists:wishlist')

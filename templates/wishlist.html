@@ -2,36 +2,38 @@
 {% load static %}
 {% block content %}
 
-    <!-- Breadcrumb Start -->
-    {% include 'includes/breadcrumb.html' with page='Shopping cart' %}
-    <!-- Breadcrumb End -->
+<!-- Breadcrumb Start -->
+{% include 'includes/breadcrumb.html' with page='Shopping cart' %}
+<!-- Breadcrumb End -->
 
 
-    <!-- Cart Start -->
-    <div class="container-fluid">
-        <div class="row px-xl-5">
-            <div class="col-lg-8 table-responsive mb-5">
-                <table class="table table-light table-borderless table-hover text-center mb-0">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Products</th>
-                            <th>Price</th>
-                            <th>Remove</th>
-                        </tr>
-                    </thead>
-                    <tbody class="align-middle">
-                    {% for i in wishlists %}
-                        <tr>
-                            <td class="align-middle" width="100px"><img src="{{ i.product.main_image.url }}" alt="" style="width: 50px;"> {{ i.product.name }}</td>
-                            <td class="align-middle">{{ i.product.price }}</td>
-                            <td class="align-middle"><a href="{% url 'delete_wishlist' _id=i.id %}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a></td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+<!-- Cart Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-lg-8 table-responsive mb-5">
+            <table class="table table-light table-borderless table-hover text-center mb-0">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Products</th>
+                    <th>Price</th>
+                    <th>Remove</th>
+                </tr>
+                </thead>
+                <tbody class="align-middle">
+                {% for i in wishlist %}
+                    <tr>
+                        <td class="align-middle" width="100px"><img src="{{ i.product.main_image.url }}" alt=""
+                                                                    style="width: 50px;"> {{ i.product.name }}
+                        </td>
+                        <td class="align-middle">{{ i.product.price }}</td>
+                        <td class="align-middle"><a href="{% url 'wishlists:delete_wishlist' i.id %}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
-    <!-- Cart End -->
+</div>
+<!-- Cart End -->
 
 {% endblock content %}

@@ -13,6 +13,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 # This is my general context
                 'apps.general.context_processors.general_context',
+                # This is my wishlist3 context
+                'apps.wishlist.context_processors.wishlist_context',
 
             ],
         },
