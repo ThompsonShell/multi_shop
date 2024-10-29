@@ -15,13 +15,13 @@
             <div id="product-carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner bg-light">
                     <div class="carousel-item active">
-                        <img class="w-100 h-100" src="../static/img/product-1.jpg" alt="Image">
+                        <img class="w-100 h-100" src="{% static '/img/product-1.jpg' %}" alt="Image">
                     </div>
                     <div class="carousel-item">
-                        <img class="w-100 h-100" src="../static/img/product-2.jpg" alt="Image">
+                        <img class="w-100 h-100" src="{% static '/img/product-2.jpg' %}" alt="Image">
                     </div>
                     <div class="carousel-item">
-                        <img class="w-100 h-100" src="../static/img/product-3.jpg" alt="Image">
+                        <img class="w-100 h-100" src="{% static '/img/product-3.jpg' %}" alt="Image">
                     </div>
                     <div class="carousel-item">
                         <img class="w-100 h-100" src="../static/img/product-4.jpg" alt="Image">
@@ -38,7 +38,7 @@
 
         <div class="col-lg-7 h-auto mb-30">
             <div class="h-100 bg-light p-30">
-                <h3>Product Name Goes Here</h3>
+                <h3>{{ product.title }}</h3>
                 <div class="d-flex mb-3">
                     <div class="text-primary mr-2">
                         <small class="fas fa-star"></small>
@@ -47,12 +47,10 @@
                         <small class="fas fa-star-half-alt"></small>
                         <small class="far fa-star"></small>
                     </div>
-                    <small class="pt-1">(99 Reviews)</small>
+                    <small class="pt-1">({{ product.comments_count }})</small>
                 </div>
-                <h3 class="font-weight-semi-bold mb-4">$150.00</h3>
-                <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit
-                    clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea
-                    Nonumy</p>
+                <h3 class="font-weight-semi-bold mb-4">{{ product.price }} $</h3>
+                <p class="mb-4">{{ product.short_description }}</p>
                 <div class="d-flex mb-3">
                     <strong class="text-dark mr-3">Sizes:</strong>
                     <form>
@@ -121,23 +119,6 @@
                         Cart
                     </button>
                 </div>
-                <div class="d-flex pt-2">
-                    <strong class="text-dark mr-2">Share on:</strong>
-                    <div class="d-inline-flex">
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-pinterest"></i>
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -147,7 +128,7 @@
                 <div class="nav nav-tabs mb-4">
                     <a class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Description</a>
                     <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Information</a>
-                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Reviews (0)</a>
+                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Reviews ({{ comment_page_obj.paginator.count }})</a>
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="tab-pane-1">
@@ -211,52 +192,86 @@
                     <div class="tab-pane fade" id="tab-pane-3">
                         <div class="row">
                             <div class="col-md-6">
-                                <h4 class="mb-4">1 review for "Product Name"</h4>
-                                <div class="media mb-4">
-                                    <img src="../static/img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1"
-                                         style="width: 45px;">
-                                    <div class="media-body">
-                                        <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
-                                        <div class="text-primary mb-2">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                            <i class="far fa-star"></i>
+                                <h4 class="mb-4">{{ product.comments_count }} review for "{{ product.title  }}"</h4>
+                                {% for comment in comment_page_obj %}
+                                    <div class="media mb-4">
+                                        <img src="data:image/png;base64,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"
+                                             alt="Image" class="img-fluid mr-3 mt-1"
+                                             style="width: 45px;">
+                                        <div class="media-body">
+                                            <h6>{{ comment.name }}<small> - <i>{{ comment.created_at }}</i></small></h6>
+                                            <div class="text-primary mb-2">-->
+                                                {% widthratio comment.rating 1 10 as STARS %}
+                                                {% for foo in STARS %}
+                                                    <i class="fas fa-star"></i>
+                                                {% endfor %}
+                                            </div>
+                                            <p>{{ comment.message }}</p>
                                         </div>
-                                        <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum
-                                            et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
                                     </div>
+                                {% endfor %}
+                                <div class="pagination">
+                                    <span class="step-links">
+                                        {% if comment_page_obj.has_previous %}
+                                            <a href="?comment_page=1">&laquo; first</a>
+                                            <a href="?comment_page={{ page_obj.previous_page_number }}">previous</a>
+                                        {% endif %}
+
+                                        <span class="current">
+                                            {{ comment_page_obj }}
+                                        </span>
+
+                                        {% if comment_page_obj.has_next %}
+                                            <a href="?comment_page={{ comment_page_obj.next_page_number }}">next</a>
+                                            <a href="?comment_page={{ comment_page_obj.paginator.num_pages }}">last &raquo;</a>
+                                        {% endif %}
+                                    </span>
                                 </div>
                             </div>
+
+                            <!--                                #===============================-->
+                                    {% for contact in page_obj %}
+                                        {# Each "contact" is a Contact model object. #}
+                                        {{ contact.full_name|upper }}<br>
+                                        ...
+                                    {% endfor %}
+<!--                                #===============================-->
                             <div class="col-md-6">
                                 <h4 class="mb-4">Leave a review</h4>
                                 {% for message in messages %}
-                                    <p>{{message}}</p>
+                                    {{message}}kkkkkkkkkkkkkk,,,s,a,
                                 {% endfor %}
 
-                                <div class="d-flex my-3">
-                                    <p class="mb-0 mr-2">Your Rating * :</p>
-                                    <div class="text-primary">
-                                        <input type="number" min="0" max="5">
-                                    </div>
-                                </div>
                                 <form method="post" action="{% url 'comments:create-comment' %}">
-                                    {{ csrf_token }}
+                                    {% csrf_token %}
+<!--                                     <div class="text-primary mb-2">-->
+<!--                                                {% for foo in comment.rating %}-->
+<!--                                                    <i class="fas fa-star"></i>-->
+<!--                                                {% endfor %}-->
+<!--                                     </div>-->
+                                    <input type="hidden" name="product" value="{{ product.id }}">
                                     <div class="form-group">
                                         <label for="message">Your Review *</label>
                                         <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
                                     </div>
+
+                                    <div class="d-flex my-3">
+                                        <p class="mb-0 mr-2">Your Rating * :</p>
+                                        <div class="text-primary">
+                                            <input name="rating" type="number" min="0" max="5">
+                                        </div>
+                                    </div>
                                     {% if not user.is_authenticated %}
-                                    <div class="form-group">
-                                        <label for="name">Your Name *</label>
-                                        <input type="text" name="name" class="form-control" id="name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">Your Email *</label>
-                                        <input type="email" name="email" class="form-control" id="email">
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="name">Your Name *</label>
+                                            <input type="text" name="name" class="form-control" id="name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Your Email *</label>
+                                            <input type="email" name="email" class="form-control" id="email">
+                                        </div>
                                     {% endif %}
+
                                     <div class="form-group mb-0">
                                         <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
                                     </div>

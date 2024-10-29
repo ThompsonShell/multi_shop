@@ -1,10 +1,12 @@
-from django.core.handlers.wsgi import WSGIRequest
+from config import settings
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+from django.core.handlers.wsgi import WSGIRequest
 from django.utils.translation import activate, get_language
 
+
+from .models import General
 from apps.products.models import Product
-from config import settings
 
 
 # Create your views here.
@@ -30,10 +32,17 @@ def search(request: WSGIRequest)-> HttpResponse:
 def set_currency(request, currency: str):
 
 
-    currencies = Product.Currency.values
+    currencies = General.Currency.values
     if currency in currencies:
         request.session['currency'] = currency
     return redirect(request.META['HTTP_REFERER'])
+
+
+
+
+def general_info(request):
+    general = General.objects.first()  # Get the first instance, or adjust as needed
+    return render(request, 'your_template.html', {'general': general})
 
 
 def cart(request):

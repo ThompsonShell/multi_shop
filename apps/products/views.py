@@ -1,11 +1,31 @@
+from lib2to3.fixes.fix_input import context
+
 from django.core.handlers.wsgi import WSGIRequest
 from django.core.paginator import Paginator
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from pygments.styles.dracula import comment
 
 from apps.general.views import search
 from .models import Product
 from apps.wishlist.models import Wishlist
+from apps.comments.models import ProductComment
+
+
+def product_detail(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    comments = ProductComment.objects.filter(product_id=product.pk).order_by('-pk')
+
+    comment_page = request.GET.get('comment_page', 1)
+    comment_page_obj = Paginator(comments, 3).get_page(comment_page)
+
+    context = {
+        'product': product,
+        'page': 'detail',
+        'comment_page_obj': comment_page_obj,
+        'comments': comments,
+    }
+    return render(request=request, template_name='detail.html', context=context)
 
 
 def product_list(request: WSGIRequest) -> HttpResponse:
@@ -18,11 +38,8 @@ def product_list(request: WSGIRequest) -> HttpResponse:
     search_text = request.session.get('search_text', None)
     queryset = Product.objects.order_by('-pk')
 
-
-
     if search_text:
         queryset = queryset.filter(title__icontains=search_text).values()
-
 
     page_number = request.GET.get('page', 1)
     page_number = int(page_number)
@@ -35,8 +52,3 @@ def product_list(request: WSGIRequest) -> HttpResponse:
 
     }
     return render(request=request, template_name='shop.html', context=context)
-
-
-def detail(request):
-    return render(request=request, template_name='detail.html', context={'page': 'detail'})
-    

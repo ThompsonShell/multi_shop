@@ -19,6 +19,7 @@ from faker import Faker
 
 from apps.categories.models import Category
 from apps.categories.views import category
+from apps.general.models import General
 from apps.general.services import random_image_download, random_image_url
 from apps.products.models import Product
 
@@ -78,7 +79,7 @@ class Command(BaseCommand):
                         title=fake.text(150),
                         price=randint(100, 100),
                         old_price=randint(100, 100),
-                        currency=choice(list(Product.Currency)).name[0],
+                        currency=choice(list(General.Currency)).name[0],
                         short_description=fake.text(250),
                         long_description=fake.text(10_000),
                         category_id=category.pk,

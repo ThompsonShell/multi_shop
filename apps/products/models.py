@@ -1,21 +1,13 @@
 from decimal import Decimal
-
 from django.db import models
 
 from apps.categories.models import Category
 from apps.comments.models import ProductComment
+from apps.general.models import General
 from apps.ratings.models import ProductRating
 
 
 class Product(models.Model):
-    class Currency(models.TextChoices):
-        USD = 'USD', 'USD'
-        UZS = 'UZS', 'UZS'
-        RUB = 'RUB', 'RUB'
-
-    DEFAULT_CURRENCY = Currency.USD
-
-
     """ this model create new product   
     
            For example:
@@ -25,10 +17,10 @@ class Product(models.Model):
     """
     title = models.CharField(max_length=150)
     avg_rating = models.DecimalField(max_digits=10, decimal_places=1, default=Decimal('0'), editable=False)
-    comments_count = models.DecimalField(max_digits=10, decimal_places=1, default=Decimal('0'), editable=False)
-    price = models.DecimalField(max_digits=5, decimal_places=2, default=Decimal('0'), help_text='Enter in USD')
-    old_price = models.DecimalField(max_digits=5, decimal_places=2, default=Decimal('0'))
-    currency = models.CharField(max_length=5, choices=Currency.choices, default='USD')
+    comments_count = models.DecimalField(max_digits=10, decimal_places=0, default=Decimal('0'), editable=False)
+    price = models.DecimalField(max_digits=10, decimal_places=1, help_text='Enter in USD')
+    old_price = models.DecimalField(max_digits=10, decimal_places=1)
+    currency = models.CharField(max_length=5, choices=General.Currency.choices, default='USD')
     short_description = models.CharField(max_length=250)
     long_description = models.TextField(max_length=10_000)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -48,10 +40,9 @@ class Product(models.Model):
         self.save()
 
 
-    def set_comments_rating(self):
+    def save(self, *args, **kwargs):
         self.comments_count = ProductComment.objects.filter(product_id=self.pk).count()
-        self.save()
-
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
