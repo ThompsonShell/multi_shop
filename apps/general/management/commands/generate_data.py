@@ -86,7 +86,7 @@ class Command(BaseCommand):
                         main_image=os.path.join(django_filename, image_name)
                     )
                 )
-        print(list(Product.Currency))
+        print(list(General.Currency))
 
         Product.objects.bulk_create(products)
 

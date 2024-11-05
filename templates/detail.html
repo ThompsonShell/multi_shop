@@ -1,7 +1,7 @@
 {% extends 'bases/basic.html' %}
 {% block content %}
 {% load static %}
-
+{% load product_tags %}
 
 <!-- Breadcrumb Start -->
 {% include 'includes/breadcrumb.html' with page='Shopping detail' %}
@@ -201,7 +201,7 @@
                                         <div class="media-body">
                                             <h6>{{ comment.name }}<small> - <i>{{ comment.created_at }}</i></small></h6>
                                             <div class="text-primary mb-2">-->
-                                                {% widthratio comment.rating 1 10 as STARS %}
+                                                {% stars_by_amount comment.rating as STARS %}
                                                 {% for foo in STARS %}
                                                     <i class="fas fa-star"></i>
                                                 {% endfor %}
@@ -239,7 +239,7 @@
                             <div class="col-md-6">
                                 <h4 class="mb-4">Leave a review</h4>
                                 {% for message in messages %}
-                                    {{message}}kkkkkkkkkkkkkk,,,s,a,
+                                    {{message}},,,s,a,
                                 {% endfor %}
 
                                 <form method="post" action="{% url 'comments:create-comment' %}">
@@ -252,7 +252,7 @@
                                     <input type="hidden" name="product" value="{{ product.id }}">
                                     <div class="form-group">
                                         <label for="message">Your Review *</label>
-                                        <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                                        <textarea name="message" id="message" cols="30" rows="5" class="form-control"></textarea>
                                     </div>
 
                                     <div class="d-flex my-3">

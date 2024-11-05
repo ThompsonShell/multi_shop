@@ -30,13 +30,10 @@ def search(request: WSGIRequest)-> HttpResponse:
 
 
 def set_currency(request, currency: str):
-
-
     currencies = General.Currency.values
     if currency in currencies:
         request.session['currency'] = currency
     return redirect(request.META['HTTP_REFERER'])
-
 
 
 

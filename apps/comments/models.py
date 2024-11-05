@@ -4,13 +4,13 @@ from django.db import models
 
 
 class ProductComment(models.Model):
-    #===== This model on create comments =====
+    # ===== This model on create comments =====
 
     product = models.ForeignKey('products.Product', on_delete=models.CASCADE)
     user = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, blank=True)
     rating = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
-    name = models.CharField(max_length=120)
-    email = models.EmailField()
+    name = models.CharField(max_length=120, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
     message = models.CharField(max_length=250)
     created_at = models.DateTimeField(auto_now_add=True)
 

@@ -7,7 +7,7 @@ def general_context(request):
     context = {
         'generals': General.objects.all(),
         'general_social_media': GeneralSocialMedia.objects.all(),
-        'currency': request.session.get('currency', Product.DEFAULT_CURRENCY),
+        'currency': request.session.get('currency', General.DEFAULT_CURRENCY),
         'currency_list': General.Currency.labels,
     }
     return context

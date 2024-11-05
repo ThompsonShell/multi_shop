@@ -1,6 +1,8 @@
 from django import template
 
 from decimal import Decimal
+
+from apps.general.models import CurrencyAmount, General
 from apps.wishlist.models import Wishlist
 
 register = template.Library()
@@ -18,5 +20,12 @@ def product_in_wishlist(user_id: int, product_id: int) -> bool:
 
 
 @register.simple_tag
-def get_price_by_currency(to_currency: str, price: Decimal = 0) -> bool:
-    return price * 10
+def get_price_by_currency(to_currency: str, price: Decimal = 0) -> Decimal:
+    if to_currency == General.Currency.UZS:
+        return price
+    return round(price / Decimal(CurrencyAmount.get_amount(currency=to_currency)), 2)
+
+
+@register.simple_tag
+def stars_by_amount(rating: int) -> str:
+    return '0' * rating

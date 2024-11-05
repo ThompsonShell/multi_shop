@@ -53,7 +53,7 @@ urlpatterns += i18n_patterns(
     path('about/', include('apps.abouts.urls', namespace='about')),
 
     # ======= WISHLIST URLS =======
-        path('wishlist/', include('apps.wishlist.urls', namespace="wishlists")),
+    path('wishlist/', include('apps.wishlist.urls', namespace="wishlists")),
 
     # =========== AUTH URLS  ============
     path('auth/', include('apps.authentication.urls')),

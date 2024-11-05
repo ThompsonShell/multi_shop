@@ -6,4 +6,4 @@ class GeneralsConfig(AppConfig):
     name = 'apps.general'
 
 def ready():
-    import signals
+    import apps.general.signals

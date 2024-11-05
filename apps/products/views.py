@@ -1,12 +1,9 @@
-from lib2to3.fixes.fix_input import context
-
 from django.core.handlers.wsgi import WSGIRequest
 from django.core.paginator import Paginator
+from django.db.models import F, Value, CharField
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from pygments.styles.dracula import comment
 
-from apps.general.views import search
 from .models import Product
 from apps.wishlist.models import Wishlist
 from apps.comments.models import ProductComment
