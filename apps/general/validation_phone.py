@@ -7,3 +7,17 @@ def validate_phone(phone_number: str):
         regex=r'^\+998\d{9}$',
         message='invalid phone number'
     )
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="dataSourceStorageLocal" created-in="DB-242.21829.162">
+  <component name="dataSourceStorageLocal" created-in="PY-242.21829.153">
     <data-source name="Aurora MySQL (MariaDB driver)" uuid="8846e0f9-a10a-41cf-b039-a3a35e2fb598">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL_AURORA" />
       <secret-storage>master_key</secret-storage>
       <user-name>thompson</user-name>
+      <schema-mapping />
+    </data-source>
+    <data-source name="db" uuid="00796ee8-92d6-401c-bc36-e531b3106ecc">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="SQLITE" />
+      <auth-provider>no-auth</auth-provider>
       <schema-mapping />
     </data-source>
   </component>

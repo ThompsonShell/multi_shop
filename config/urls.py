@@ -7,7 +7,7 @@ from django.conf.urls.i18n import i18n_patterns
 
 
 from apps.categories.views import category
-from apps.general.views import set_language, search, set_currency, cart, checkout
+from apps.general.views import set_language, search, set_currency, checkout, clear_session
 from apps.main.views import home
 from apps.products.views import product_list, product_detail
 from apps.contacts.views import contact
@@ -34,17 +34,19 @@ urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
 
     # ======= GENERAL URLS =======
-    path('cart/', cart, name='cart-page'),
     path('search/', include('apps.general.urls')),
     path('checkout/', checkout, name='checkout-page'),
 
     # ======= CONTACT URLS =======
-    path('contacts/', include('apps.contacts.urls')),
+    path('contacts/', include('apps.contacts.urls', namespace='contacts')),
 
     # ======= PRODUCT URLS =======
     path('detail/', product_detail, name='detail-page'),
     path('search_product/', product_list, name='search_product'),
     path('products/', include('apps.products.urls', namespace='products')),
+
+    # ======= PRODUCT URLS =======
+    path('cart/', include('apps.carts.urls', namespace='carts')),
 
     # ======= CATEGORY URLS =======
     path('categories/', include('apps.categories.urls')),
@@ -63,6 +65,9 @@ urlpatterns += i18n_patterns(
 
     # ============= DEBUG_TOOLBAR URLs =======
     path('__debug__/', include('debug_toolbar.urls')),
+
+# ======= CLEAR DATA URLS =======
+    path('clear_session/', clear_session, name='clear-session'),
 
 
 )

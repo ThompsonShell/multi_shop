@@ -2,12 +2,8 @@ from django.db import models
 
 
 class Category(models.Model):
-    """
-       <<<<<<<<<< this model create category >>>>>>>>>>
+    # <<<<<<<<<< this model create category >>>>>>>>>>
 
-       For example:
-       category_name : Clothes
-    """
 
     name = models.CharField(max_length=255, unique=True)
     parent = models.ForeignKey(to='self',

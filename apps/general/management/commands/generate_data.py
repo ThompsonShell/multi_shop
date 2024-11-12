@@ -64,7 +64,7 @@ class Command(BaseCommand):
 
         for cat_id in range(9):
             category = Category.objects.create(
-                name=fake.text(250)
+                name=fake.text(10)
             )
 
             # ===== check image ir for existing =====
@@ -72,7 +72,7 @@ class Command(BaseCommand):
             print("=========")
 
             products = []
-            for i in range(10):
+            for i in range(5):
                 print("success")
                 products.append(
                     Product(

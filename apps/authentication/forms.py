@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import UsernameField
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import get_user_model
 
@@ -33,7 +34,10 @@ class UserRegistrationForm(forms.Form):
 
     def clean_username(self):
         username = self.cleaned_data['username']
-        if get_user_model().objects.filter(username=username).exists():
+        # kwargs = {
+        #         CustomUser.USERNAME_FIELD: username,
+        # }
+        if get_user_model().objects.filter(username=username).exists(): #filter(**kwargs)f
             raise forms.ValidationError('Username already exists')
         return username
 

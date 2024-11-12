@@ -1,32 +1,21 @@
+from PIL.features import features
 from django.db import models
 
 from apps.products.models import Product
 
 
 class Feature(models.Model):
-    """this model create feature name
+    name = models.CharField(max_length=250, unique=True)
 
-
-        For example:
-        <<<<<<<<{'name': 'titanium metal', 'name':'operative'}>>>>>>>>>
-
-    """
-
-    name = models.CharField(max_length=255)
-
+    def __str__(self):
+        return self.name
 
 class FeatureValue(models.Model):
-    """this model create feature feature and feature value
-
-
-        For example:
-        <<<<<<<<{'name': 'operative', 'value': '16GB'}>>>>>>>>>
-
-    """
-    feature = models.ForeignKey(Feature, on_delete=models.CASCADE)
+    feature = models.ForeignKey(Feature, on_delete=models.PROTECT, related_name='values')
     name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
 
-class ProductFeatures(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    feature_value = models.ForeignKey(FeatureValue, on_delete=models.CASCADE)
+    class Meta:
+        unique_together = (('feature', 'name'),)
