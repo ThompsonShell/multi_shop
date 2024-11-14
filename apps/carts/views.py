@@ -9,11 +9,11 @@ def cart(request):
     if not request.user.is_authenticated:
         return redirect('login-page')
 
-    queryset = Cart.objects.annotate(total_price=F('queryset') * F('product__price'),).filter(user=request.user)
+    queryset = Cart.objects.annotate(total_price=F('queryset') * F('product__price')).filter(user=request.user)
 
     context = {
         'user_carts': queryset.select_related('product'),
-        'cart_total_price': queryset.aggregate(Sum('total_price')),
+        'cart_total_price': queryset.aggregate(Sum('total_price'))['total_price__sum'],
     }
     return render(request, 'cart.html', context)
 
