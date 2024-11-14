@@ -30,8 +30,8 @@ class Product(models.Model):
     old_price = models.DecimalField(max_digits=10, decimal_places=1, default=Decimal('0'), editable=False)
     price = models.DecimalField(max_digits=10, decimal_places=1, default=Decimal('0'), editable=False)
 
-
     def get_features(self):
+        print(1111)
         product_features = ProductFeatures.objects.prefetch_related('feature_values').filter(product_id=self.pk)
         features = {}
         for product_feature in product_features:

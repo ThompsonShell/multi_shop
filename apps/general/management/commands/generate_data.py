@@ -11,14 +11,12 @@ from django.core.management.base import BaseCommand
 from django.template.context_processors import request
 
 from django.utils.timezone import now
-from jedi.inference.syntax_tree import operator_to_magic_method
 
 from apps.abouts.models import About
 
 from faker import Faker
 
 from apps.categories.models import Category
-from apps.categories.views import category
 from apps.general.models import General
 from apps.general.services import random_image_download, random_image_url
 from apps.products.models import Product

@@ -6,7 +6,6 @@ from django.conf.urls.i18n import i18n_patterns
 
 
 
-from apps.categories.views import category
 from apps.general.views import set_language, search, set_currency, checkout, clear_session
 from apps.main.views import home
 from apps.products.views import product_list, product_detail
@@ -45,7 +44,7 @@ urlpatterns += i18n_patterns(
     path('search_product/', product_list, name='search_product'),
     path('products/', include('apps.products.urls', namespace='products')),
 
-    # ======= PRODUCT URLS =======
+    # ======= CARTS URLS =======
     path('cart/', include('apps.carts.urls', namespace='carts')),
 
     # ======= CATEGORY URLS =======
