@@ -1,47 +1,46 @@
 Multi Shop
 
-Multi Shop is a multi-functional e-commerce web application built with Django, designed to help users create online stores, add products, and provide a platform for customers to make purchases.
-Key Features
-
-    User Registration and Authentication — Users can register and log in to make purchases.
-    Product Browsing and Search — Customers can browse and filter products in the catalog.
-    Shopping Cart — Users can add selected products to their shopping cart.
-    Checkout and Payment System — Enables customers to complete payments for their orders.
-    Admin Panel — Store owners can manage products, orders, and users.
-
 Installation
 
 To set up the project locally, follow these steps:
 
-    Clone the repository:
+1. Clone the repository
+   git clone https://github.com/ThompsonShell/multi_shop.git
+   cd multi_shop
 
-git clone https://github.com/ThompsonShell/multi_shop.git
-cd multi_shop
 
-Create a virtual environment:
 
-python -m venv venv
-source venv/bin/activate  # For Windows, use `venv\Scripts\activate`
+2.  Create a virtual environment
 
-Install required packages:
 
-pip install -r requirements.txt
+      python3 -m venv venv
 
-Configure Environment Variables:
+      source venv/bin/activate # For Windows, use `venv\Scripts\activate`
 
-Rename the .env.example file to .env and replace your_secret_key with your actual Django secret key and any other necessary environment-specific values:
 
-SECRET_KEY=your_secret_key
+3. Install required packages
 
-Apply migrations:
+      
+      pip install -r requirements.txt
 
-python manage.py migrate
+4. Configure Environment Variables
+Rename the .env.example file to .env and replace your_secret_key with your actual Django secret key, along with any other necessary environment-specific values:
 
-Create a superuser:
+   
+      SECRET_KEY=your_secret_key
 
-python manage.py createsuperuser
+5. Apply migrations
 
-Run the project:
+   
+      python manage.py migrate
+
+6. Create a superuser
+
+   
+      python manage.py createsuperuser
+
+7. Run the project
+
 
     python manage.py runserver
 
