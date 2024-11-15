@@ -5,19 +5,21 @@ Installation
 To set up the project locally, follow these steps:
 
 1. Clone the repository
+
+   
    git clone https://github.com/ThompsonShell/multi_shop.git
    cd multi_shop
 
 
 
-2.  Create a virtual environment
+2. Create a virtual environment
 
 
       python3 -m venv venv
 
       source venv/bin/activate # For Windows, use `venv\Scripts\activate`
 
-#sdssbaskdbkj
+
 3. Install required packages
 
       
@@ -42,7 +44,7 @@ Rename the .env.example file to .env and replace your_secret_key with your actua
 7. Run the project
 
 
-    python manage.py runserver
+      python manage.py runserver
 
 Usage
 
