@@ -3,19 +3,33 @@ from django.db.models import F, Sum
 from django.shortcuts import render, redirect, get_object_or_404
 
 from apps.carts.models import Cart
+from apps.coupons.models import UsedCoupon
+from apps.general.models import General
 
 
+@login_required(login_url='user_login')
 def cart(request):
-    if not request.user.is_authenticated:
-        return redirect('login-page')
+    try:
+        shipping_percent = General.objects.first().shipping_percent
+    except AttributeError:
+        shipping_percent = 0
 
-    queryset = Cart.objects.annotate(total_price=F('queryset') * F('product__price')).filter(user=request.user)
 
+    user = request.user
+    code = request.session.get('coupon_code', {}).get('code')
+    if code is None and UsedCoupon.objects.filter(coupon__code=code, user_id=user.pk).exists():
+        del request.session['coupon_data']
+
+    queryset = Cart.objects.annotate(total_price=F('quantity') * F('product__price')).filter(user=request.user)
     context = {
+        'shipping_percent': shipping_percent,
         'user_carts': queryset.select_related('product'),
         'cart_total_price': queryset.aggregate(Sum('total_price'))['total_price__sum'],
     }
-    return render(request, 'cart.html', context)
+    context['total_price'] = context['cart_total_price'] + context['cart_total_price'] * shipping_percent / 100 - context['cart_total_price'] * request.session.get('coupon_code', {}).get('discount', 0 ) /100
+    print()
+    return render(request=request, template_name='cart.html', context=context)
+
 
 @login_required(login_url='login-page')
 def create_cart(request, product_id: int):

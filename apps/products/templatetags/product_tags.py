@@ -20,7 +20,7 @@ def product_in_wishlist(user_id: int, product_id: int) -> bool:
 
 
 @register.simple_tag
-def get_price_by_currency(to_currency: str, price: Decimal = 0) -> Decimal:
+def get_price_by_currency(to_currency: str = General.Currency.UZS, price: Decimal = 0) -> Decimal:
     if to_currency == General.Currency.UZS:
         return price
     return round(price / Decimal(CurrencyAmount.get_amount(currency=to_currency)), 2)

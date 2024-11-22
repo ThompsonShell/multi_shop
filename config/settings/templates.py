@@ -17,7 +17,8 @@ TEMPLATES = [
                 'apps.wishlist.context_processors.wishlist_context',
                 # This is my category context processors
                 'apps.categories.context_processors.categories',
-
+                # This is my cart context processors
+                'apps.carts.context_processors.carts_context',
             ],
         },
     },

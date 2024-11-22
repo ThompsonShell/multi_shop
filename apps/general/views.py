@@ -41,12 +41,3 @@ def clear_session(request):
         request.session.clear()
     return redirect('home-page')
 
-def general_info(request):
-    general = General.objects.first()  # Get the first instance, or adjust as needed
-    return render(request, 'your_template.html', {'general': general})
-
-
-def checkout(request):
-    return render(request=request, template_name='checkout.html',context={'page':'pages'})
-
-

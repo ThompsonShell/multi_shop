@@ -6,10 +6,11 @@ from django.conf.urls.i18n import i18n_patterns
 
 
 
-from apps.general.views import set_language, search, set_currency, checkout, clear_session
 from apps.main.views import home
-from apps.products.views import product_list, product_detail
+from apps.orders.views import checkout
 from apps.contacts.views import contact
+from apps.products.views import product_list, product_detail
+from apps.general.views import set_language, search, set_currency, clear_session
 
 
 urlpatterns = [
@@ -34,7 +35,9 @@ urlpatterns += i18n_patterns(
 
     # ======= GENERAL URLS =======
     path('search/', include('apps.general.urls')),
-    path('checkout/', checkout, name='checkout-page'),
+
+    # ======= CHECKOUT URLS =======
+    path('checkout/', include('apps.orders.urls')),
 
     # ======= CONTACT URLS =======
     path('contacts/', include('apps.contacts.urls', namespace='contacts')),
@@ -46,6 +49,9 @@ urlpatterns += i18n_patterns(
 
     # ======= CARTS URLS =======
     path('cart/', include('apps.carts.urls', namespace='carts')),
+
+     # ======= CARTS URLS =======
+    path('coupon/', include('apps.coupons.urls', namespace='coupons')),
 
     # ======= CATEGORY URLS =======
     path('categories/', include('apps.categories.urls')),

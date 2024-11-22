@@ -10,13 +10,8 @@ from apps.ratings.models import ProductRating
 
 
 class Product(models.Model):
-    """ this model create new product   
-    
-           For example:
-    
-           <<<<<<<<<<{'name':'laptop', 'category':'technique', 'price':'10000', 'currency':'USD'}>>>>>>>>>>>
-    
-    """
+    """ this model create new product"""
+
     title = models.CharField(max_length=150)
     avg_rating = models.DecimalField(max_digits=10, decimal_places=1, default=Decimal('0'), editable=False)
     comments_count = models.DecimalField(max_digits=10, decimal_places=0, default=Decimal('0'), editable=False)
@@ -29,6 +24,7 @@ class Product(models.Model):
     main_image = models.ImageField(upload_to='products/images/%Y/%m/%d/')
     old_price = models.DecimalField(max_digits=10, decimal_places=1, default=Decimal('0'), editable=False)
     price = models.DecimalField(max_digits=10, decimal_places=1, default=Decimal('0'), editable=False)
+
 
     def get_features(self):
         print(1111)
@@ -49,6 +45,7 @@ class Product(models.Model):
                         {'id': value.id, 'name': value.name}
                     )
             return list(features.values())
+
 
     def set_avg_rating(self):
         aggregated_amount = ProductRating.objects.filter(

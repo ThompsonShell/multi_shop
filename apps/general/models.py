@@ -1,7 +1,7 @@
 import requests
 
-
 from django.core.exceptions import ValidationError
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.timezone import now
 from django.db import models
 from django.core.cache import cache
@@ -20,12 +20,16 @@ class General(models.Model):
 
     phone1 = models.CharField(max_length=13, validators=[validate_phone], help_text="UZB Number +998123456789")
     phone2 = models.CharField(max_length=13, null=True, blank=True, validators=[validate_phone])
-
     address = models.CharField(max_length=100, null=True, blank=True)
     logo = models.ImageField(upload_to="general/logo/image/%Y/%m/%d/")
+    shipping_percent = models.PositiveSmallIntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(100)])
+
+    print(phone1)
+    print("=======================")
+    print(shipping_percent)
 
     def clean(self):
-        if self.pk and General.objects.exists():
+        if not self.pk and General.objects.exists():
             raise ValidationError('Unique')
 
 
@@ -64,3 +68,10 @@ class CurrencyAmount(models.Model):
 
     class Meta:
         unique_together = (('currency', 'date'),)
+
+class PaymentMethod(models.Model):
+    name = models.CharField(max_length=10, unique=True)
+    icon = models.ImageField(upload_to="general/icon/image/%Y/%m/%d/")
+
+    def __str__(self):
+        return self.name

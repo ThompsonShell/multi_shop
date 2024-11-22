@@ -1,6 +1,7 @@
 from django.db import models
-
+from django.conf import settings
 from apps.coupons.models import Coupon
+from apps.general.models import PaymentMethod
 
 
 class Order(models.Model):
@@ -8,7 +9,8 @@ class Order(models.Model):
     <<<<<<<<< this model work for orders >>>>>>>>>
     """
 
-    # hal payment yaratilmagan
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    payment_method = models.ForeignKey('general.PaymentMethod', on_delete=models.PROTECT)
     is_paid = models.BooleanField(default=False)
     paid_at = models.DateTimeField(null=True,
                                 blank=True)
@@ -16,27 +18,19 @@ class Order(models.Model):
     total_price = models.DecimalField(
                                 max_digits=10,
                                 decimal_places=2,
-                                default=0)
+                                default=0
+                            )
     delivery_price = models.DecimalField(max_digits=10,
                                 decimal_places=2,
                                 default=0)
     total_price = models.DecimalField(max_digits=10,
                                 decimal_places=2,
                                 default=0)
-    coupon_code = models.CharField(max_length=50,
-                                null=True,
-                                blank=True)
-    coupon_price = models.DecimalField(max_digits=10,
-                                decimal_places=2,
-                                null=True,
-                                blank=True)
-    coupon = models.ForeignKey(Coupon, on_delete=models.SET_NULL, null=True, blank=True)
-    user = models.ForeignKey(to='auth.User', on_delete=models.PROTECT)
-    # payment_method = models.ForeignKey(to='PaymentMethod', on_delete=models.PROTECT)
+    coupon = models.ForeignKey(Coupon, on_delete=models.PROTECT)
 
 
-def __str__(self):
-        return self.user
+    def __str__(self):
+            return self.user
 
 
 class OrderProduct(models.Model):
@@ -46,9 +40,9 @@ class OrderProduct(models.Model):
 
     quantity = models.PositiveIntegerField(default=1)
     order = models.ForeignKey(to='orders.Order',
-                                on_delete=models.CASCADE)
+                                on_delete=models.PROTECT)
     product = models.ForeignKey(to='products.Product',
-                                on_delete=models.CASCADE)
+                                on_delete=models.PROTECT)
     price = models.DecimalField(max_digits=10,
                                 decimal_places=2,
                                 default=0)
